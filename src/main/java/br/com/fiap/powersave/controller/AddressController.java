@@ -1,6 +1,6 @@
 package br.com.fiap.powersave.controller;
 
-import br.com.fiap.powersave.model.Address;
+import br.com.fiap.powersave.model.entity.Address;
 import br.com.fiap.powersave.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

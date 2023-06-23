@@ -15,4 +15,11 @@ public class GlobalExceptionHandler {
                 new ExceptionRecord(HttpStatus.NOT_FOUND, e.getMessage())
         );
     }
+
+    @ExceptionHandler(PersonNotFoundException.class)
+    public ResponseEntity<ExceptionRecord> personNotFoundException(PersonNotFoundException e){
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                new ExceptionRecord(HttpStatus.NOT_FOUND, e.getMessage())
+        );
+    }
 }
