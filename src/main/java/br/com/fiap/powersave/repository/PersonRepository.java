@@ -1,9 +1,9 @@
 package br.com.fiap.powersave.repository;
 
-import br.com.fiap.powersave.model.entity.Address;
+import br.com.fiap.powersave.model.entity.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface AddressRepository extends JpaRepository<Address, Long> {
+public interface PersonRepository extends JpaRepository<Person, Long> {
 }

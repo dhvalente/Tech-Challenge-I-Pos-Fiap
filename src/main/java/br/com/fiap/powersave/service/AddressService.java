@@ -1,6 +1,6 @@
 package br.com.fiap.powersave.service;
 
-import br.com.fiap.powersave.model.Address;
+import br.com.fiap.powersave.model.entity.Address;
 import br.com.fiap.powersave.repository.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
