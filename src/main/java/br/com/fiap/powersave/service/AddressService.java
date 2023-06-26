@@ -1,15 +1,15 @@
 package br.com.fiap.powersave.service;
 
 import br.com.fiap.powersave.entity.Address;
+import br.com.fiap.powersave.enums.BrazilianState;
 import br.com.fiap.powersave.exceptions.AddressNotFoundException;
+import br.com.fiap.powersave.exceptions.BrazilianStateNotFound;
 import br.com.fiap.powersave.records.AddressRecord;
 import br.com.fiap.powersave.repository.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class AddressService {
@@ -25,11 +25,12 @@ public class AddressService {
     }
 
     public Address create(AddressRecord addressRecord) {
+        String validState = isValidState(addressRecord.state());
         Address address = Address.builder()
                 .street(addressRecord.street())
                 .number(addressRecord.number())
                 .district(addressRecord.district())
-                .state(addressRecord.state())
+                .state(validState)
                 .city(addressRecord.city())
                 .build();
         return addressRepository.save(address);
@@ -54,11 +55,14 @@ public class AddressService {
         entity.setState(obj.getState());
     }
 
-    private boolean validaCep(String cep) {
-        if (!cep.matches("\\d{8}")) {
-            return false;
+    private String isValidState(String state) {
+        BrazilianState brazilianState = BrazilianState.get(state);
+        if(brazilianState == null){
+            brazilianState = BrazilianState.getBrazilianStateByAbbreviation(state);
         }
-
-        return true;
+        if(brazilianState == null){
+            throw new BrazilianStateNotFound(state);
+        }
+        return brazilianState.getDescription();
     }
 }

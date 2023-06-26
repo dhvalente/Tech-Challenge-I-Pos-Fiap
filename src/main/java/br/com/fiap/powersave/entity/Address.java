@@ -24,14 +24,12 @@ public class Address{
     private String city;
     private String district;
     private String state;
-    private String zipcode;
 
-    public Address(String street, String number, String city, String district, String state, String zipcode) {
+    public Address(String street, String number, String city, String district, String state) {
         this.street = street;
         this.number = number;
         this.city = city;
         this.district = district;
         this.state = state;
-        this.zipcode = zipcode;
     }
 }
