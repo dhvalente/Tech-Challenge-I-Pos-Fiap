@@ -1,11 +1,10 @@
 package br.com.fiap.powersave.controller;
 
-import br.com.fiap.powersave.model.entity.Person;
+import br.com.fiap.powersave.entity.Person;
 import br.com.fiap.powersave.service.PersonService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 

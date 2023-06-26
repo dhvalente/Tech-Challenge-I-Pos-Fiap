@@ -1,11 +1,10 @@
-package br.com.fiap.powersave.model.entity;
+package br.com.fiap.powersave.entity;
 
-import br.com.fiap.powersave.model.enums.Gender;
+import br.com.fiap.powersave.enums.Gender;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

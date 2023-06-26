@@ -1,6 +1,6 @@
 package br.com.fiap.powersave.repository;
 
-import br.com.fiap.powersave.model.entity.Person;
+import br.com.fiap.powersave.entity.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
