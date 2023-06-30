@@ -1,7 +1,6 @@
-package br.com.fiap.powersave.model.entity;
+package br.com.fiap.powersave.model.dto;
 
 import br.com.fiap.powersave.model.enums.Gender;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,24 +9,14 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
-@Entity(name = "tb_person")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Person {
+public class PersonResponseDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_person")
     private Long id;
     private String name;
     private LocalDate birthDate;
-    @Enumerated(EnumType.STRING)
     private Gender gender;
     private LocalDateTime registrationDate;
-
-    @PrePersist
-    private void setRegistrationDate(){
-        setRegistrationDate(LocalDateTime.now());
-    }
 
 }
