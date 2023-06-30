@@ -1,4 +1,4 @@
-package br.com.fiap.powersave.enums;
+package br.com.fiap.powersave.model.enums;
 
 public enum Gender {
     MASCULINE,

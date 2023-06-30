@@ -1,9 +1,9 @@
 package br.com.fiap.powersave.service;
 
-import br.com.fiap.powersave.entity.Address;
-import br.com.fiap.powersave.enums.BrazilianState;
+import br.com.fiap.powersave.model.enums.BrazilianState;
 import br.com.fiap.powersave.exceptions.AddressNotFoundException;
 import br.com.fiap.powersave.exceptions.BrazilianStateNotFound;
+import br.com.fiap.powersave.model.entity.Address;
 import br.com.fiap.powersave.records.AddressRecord;
 import br.com.fiap.powersave.repository.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
-package br.com.fiap.powersave.entity;
+package br.com.fiap.powersave.model.entity;
 
-import br.com.fiap.powersave.enums.Gender;
+import br.com.fiap.powersave.model.enums.Gender;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,6 +23,11 @@ public class Person {
     private LocalDate birthDate;
     @Enumerated(EnumType.STRING)
     private Gender gender;
-    private LocalDateTime registrationDate = LocalDateTime.now();
+    private LocalDateTime registrationDate;
+
+    @PrePersist
+    private void setRegistrationDate(){
+        setRegistrationDate(LocalDateTime.now());
+    }
 
 }

@@ -1,4 +1,4 @@
-package br.com.fiap.powersave.entity;
+package br.com.fiap.powersave.model.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

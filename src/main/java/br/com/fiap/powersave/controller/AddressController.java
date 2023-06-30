@@ -1,6 +1,6 @@
 package br.com.fiap.powersave.controller;
 
-import br.com.fiap.powersave.entity.Address;
+import br.com.fiap.powersave.model.entity.Address;
 import br.com.fiap.powersave.records.AddressRecord;
 import br.com.fiap.powersave.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +10,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import java.net.URI;
-import java.util.List;
 
 @RestController
 @RequestMapping("/address")

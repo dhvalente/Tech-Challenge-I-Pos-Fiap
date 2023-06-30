@@ -23,8 +23,8 @@ public class GlobalExceptionHandler {
         );
     }
 
-    @ExceptionHandler(BrazilianStateNotFound.class)
-    public ResponseEntity<ExceptionRecord> brazilianStateNotFound(BrazilianStateNotFound e){
+    @ExceptionHandler(ApplianceNotFoundException.class)
+    public ResponseEntity<ExceptionRecord> applianceNotFoundException(ApplianceNotFoundException e){
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
                 new ExceptionRecord(HttpStatus.NOT_FOUND, e.getMessage())
         );
