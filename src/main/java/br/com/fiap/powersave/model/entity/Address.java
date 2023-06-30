@@ -2,12 +2,14 @@ package br.com.fiap.powersave.model.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
 @Data
 @Entity
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "tb_address")
@@ -22,14 +24,12 @@ public class Address{
     private String city;
     private String district;
     private String state;
-    private String zipcode;
 
-    public Address(String street, String number, String city, String district, String state, String zipcode) {
+    public Address(String street, String number, String city, String district, String state) {
         this.street = street;
         this.number = number;
         this.city = city;
         this.district = district;
         this.state = state;
-        this.zipcode = zipcode;
     }
 }

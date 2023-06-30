@@ -1,6 +1,5 @@
 package br.com.fiap.powersave.controller;
 
-import br.com.fiap.powersave.model.dto.PersonResponseDto;
 import br.com.fiap.powersave.model.entity.Appliance;
 import br.com.fiap.powersave.service.ApplianceService;
 import jakarta.validation.Valid;
