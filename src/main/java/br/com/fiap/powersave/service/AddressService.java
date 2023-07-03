@@ -21,7 +21,7 @@ public class AddressService {
     }
 
     public Address findById(Long id) {
-        return addressRepository.findById(id).orElseThrow(()-> new AddressNotFoundException(id));
+        return addressRepository.findById(id).orElseThrow(() -> new AddressNotFoundException(id));
     }
 
     public Address create(AddressRecord addressRecord) {
@@ -37,30 +37,30 @@ public class AddressService {
     }
 
     public void delete(Long id) {
+        findById(id);
         addressRepository.deleteById(id);
-
     }
 
-    public Address update(Long id, Address obj) {
-        Address entity = addressRepository.getReferenceById(id);
+    public Address update(Long id, AddressRecord obj) {
+        Address entity = findById(id);
         updateData(entity, obj);
         return addressRepository.save(entity);
     }
 
-    private void updateData(Address entity, Address obj) {
-        entity.setStreet(obj.getStreet());
-        entity.setNumber(obj.getNumber());
-        entity.setCity(obj.getCity());
-        entity.setDistrict(obj.getDistrict());
-        entity.setState(obj.getState());
+    private void updateData(Address entity, AddressRecord obj) {
+        entity.setStreet(obj.street());
+        entity.setNumber(obj.number());
+        entity.setCity(obj.city());
+        entity.setDistrict(obj.district());
+        entity.setState(obj.state());
     }
 
     private String isValidState(String state) {
         BrazilianState brazilianState = BrazilianState.get(state);
-        if(brazilianState == null){
+        if (brazilianState == null) {
             brazilianState = BrazilianState.getBrazilianStateByAbbreviation(state);
         }
-        if(brazilianState == null){
+        if (brazilianState == null) {
             throw new BrazilianStateNotFound(state);
         }
         return brazilianState.getDescription();

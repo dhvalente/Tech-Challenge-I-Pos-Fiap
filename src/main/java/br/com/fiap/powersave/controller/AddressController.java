@@ -3,6 +3,7 @@ package br.com.fiap.powersave.controller;
 import br.com.fiap.powersave.model.entity.Address;
 import br.com.fiap.powersave.records.AddressRecord;
 import br.com.fiap.powersave.service.AddressService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -35,7 +36,7 @@ public class AddressController {
     }
 
     @PostMapping
-    public ResponseEntity<Address> create(@RequestBody AddressRecord addressRecord) {
+    public ResponseEntity<Address> create(@Valid @RequestBody AddressRecord addressRecord) {
         Address address = addressService.create(addressRecord);
         return ResponseEntity.status(HttpStatus.CREATED).body(address);
     }
@@ -47,8 +48,8 @@ public class AddressController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Address> update(@PathVariable Long id , @RequestBody Address obj) {
-        obj = addressService.update(id, obj);
+    public ResponseEntity<AddressRecord> update(@PathVariable Long id , @RequestBody AddressRecord obj) {
+        addressService.update(id, obj);
         return ResponseEntity.ok(obj);
     }
 }
