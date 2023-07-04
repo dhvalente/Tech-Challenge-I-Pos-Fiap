@@ -1,9 +1,7 @@
 package br.com.fiap.powersave.service;
 
 import br.com.fiap.powersave.exceptions.ApplianceNotFoundException;
-import br.com.fiap.powersave.exceptions.PersonNotFoundException;
 import br.com.fiap.powersave.model.entity.Appliance;
-import br.com.fiap.powersave.model.entity.Person;
 import br.com.fiap.powersave.repository.ApplianceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

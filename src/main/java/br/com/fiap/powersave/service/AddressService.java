@@ -1,9 +1,9 @@
 package br.com.fiap.powersave.service;
 
-import br.com.fiap.powersave.model.enums.BrazilianState;
 import br.com.fiap.powersave.exceptions.AddressNotFoundException;
 import br.com.fiap.powersave.exceptions.BrazilianStateNotFound;
 import br.com.fiap.powersave.model.entity.Address;
+import br.com.fiap.powersave.model.enums.BrazilianState;
 import br.com.fiap.powersave.records.AddressRecord;
 import br.com.fiap.powersave.repository.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,10 +41,10 @@ public class AddressService {
         addressRepository.deleteById(id);
     }
 
-    public Address update(Long id, AddressRecord obj) {
+    public void update(Long id, AddressRecord obj) {
         Address entity = findById(id);
         updateData(entity, obj);
-        return addressRepository.save(entity);
+        addressRepository.save(entity);
     }
 
     private void updateData(Address entity, AddressRecord obj) {
