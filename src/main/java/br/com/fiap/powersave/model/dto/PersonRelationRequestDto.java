@@ -11,10 +11,10 @@ import org.springframework.format.annotation.NumberFormat;
 @Setter
 public class PersonRelationRequestDto {
 
-    @NotNull
+    @NotNull(message = "{kinshipType.required}")
     private KinshipType kinshipType;
 
-    @NotNull
+    @NotNull(message = "{personId.required}")
     @NumberFormat
     private Long personId;
 

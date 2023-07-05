@@ -15,13 +15,13 @@ import java.util.Collections;
 @Setter
 public class PersonRequestDto {
 
-    @NotBlank
+    @NotBlank(message = "{name.required}")
     private String name;
 
-    @NotNull
+    @NotNull(message = "{gender.required}")
     private Gender gender;
 
-    @NotNull
+    @NotNull(message = "{birthDate.required}")
     private LocalDate birthDate;
 
     @Valid
