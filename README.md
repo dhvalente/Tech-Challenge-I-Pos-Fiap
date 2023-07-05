@@ -50,7 +50,7 @@ Essas APIs foram projetadas segundo o princípio de responsabilidade única e fo
 
 > Get : Get all people from database
 >> http://localhost:8080/v1/people
-![img.png](img/people-getAll.png)
+![img.png](img/people-getall.png)
 
 > Get By Id : Get people by ID from database
 >> http://localhost:8080/v1/people/{id}
