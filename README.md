@@ -20,73 +20,9 @@ Essas APIs foram projetadas segundo o princípio de responsabilidade única e fo
 
 - **AddressController**: Gerencia todas as operações CRUD relacionadas a endereços.
 
-> Post: Save address object to database
->> http://localhost:8080/v1/address
-![img.png](img/address-post1.png)
-
-> Get : Get all address from database
->> http://localhost:8080/v1/address
-![img.png](img/address-getAll.png)
-
-> Get By Id : Get address by ID from database
->> http://localhost:8080/v1/address/{id}
-![img.png](img/address-getById.png)
-
-
-> Put : Put address object by ID to database
->> http://localhost:8080/v1/address/{id}
-![img.png](img/address-put.png)
-
-> Delete : Delete address object by ID to database
->> http://localhost:8080/v1/address/{id}
-![img.png](img/address-delete.png)
-
-
 - **PersonController**: Gerencia todas as operações CRUD relacionadas a pessoas.
 
-> Post: Save people object to database
->> http://localhost:8080/v1/people
-![img.png](img/people-post.png)
-
-> Get : Get all people from database
->> http://localhost:8080/v1/people
-![img.png](img/people-getAll.png)
-
-> Get By Id : Get people by ID from database
->> http://localhost:8080/v1/people/{id}
-![img.png](img/people-getId.png)
-
-
-> Put : Put people object by ID to database
->> http://localhost:8080/v1/people/{id}
-![img.png](img/people-put.png)
-
-> Delete : Delete people object by ID to database
->> http://localhost:8080/v1/people/{id}
-![img.png](img/people-delete.png)
-
 - **ApplianceController**: Gerencia todas as operações CRUD relacionadas a aparelhos domésticos.
-
-> Post: Save appliance object to database
->> http://localhost:8080/v1/appliance
-![img.png](img/appliance-post1.png)
-
-> Get : Get all appliance from database
->> http://localhost:8080/v1/appliance
-![img.png](img/appliance-getAll.png)
-
-> Get By Id : Get appliance by ID from database
->> http://localhost:8080/v1/appliance/{id}
-![img.png](img/appliance-getById.png)
-
-> Put : Put appliance object by ID to database
->> http://localhost:8080/v1/appliance/{id}
-![img.png](img/appliance-put.png)
-
-> Delete : Delete appliance object by ID to database
->> http://localhost:8080/v1/appliance/{id}
-![img.png](img/appliance-delete.png)
-
 
 ## Arquitetura do Projeto
 
@@ -109,26 +45,18 @@ Utilizamos DTOs (Data Transfer Objects) para melhorar a segurança dos dados, ad
 3. Execute o projeto - o servidor será iniciado automaticamente.
 > Nota: Certifique-se de ter o ambiente Java e todas as outras dependências instaladas.
 
-
-## Outros links
-Ao executar o projeto, o Swagger poderá ser acessado em: 
->http://localhost:8080/swagger-ui/index.html
-
-Caso prefira executar as API's via Insomnia, a collection está disponível em:
-
-> [Tech Challenge API](./documentation/Insomnia_2023-07-05.json)
-
 ## Contribuição
+
 Sinta-se à vontade para contribuir para este projeto. Para problemas, solicitações de recursos ou correções de bugs, abra uma issue no GitHub.
 
 ## Licença
+
 Este projeto está licenciado sob a licença MIT.
 
 ## Contato
+
 Desenvolvido por:
 
-- Diego Valente - RM 348497
-- Matheus Sena - RM 430025
-- William Kaminski - RM 430025
-
-
+- Diego Valente
+- Matheus Sena
+- William Kaminski

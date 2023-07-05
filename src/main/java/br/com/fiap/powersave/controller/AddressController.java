@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @Tag(name = "Address Controler", description = "Address Controller exposes REST APIs for Address")
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("v1/address")
+@RequestMapping("/address")
 public class AddressController {
 
     private final  AddressService addressService;
