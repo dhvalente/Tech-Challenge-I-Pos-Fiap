@@ -127,8 +127,8 @@ Este projeto está licenciado sob a licença MIT.
 ## Contato
 Desenvolvido por:
 
-- Diego Valente - RM 348497
+- Diogo Valente - RM 348497
 - Matheus Sena - RM 430025
-- William Kaminski - RM 430025
+- Willian Kaminski - RM 430025
 
 
