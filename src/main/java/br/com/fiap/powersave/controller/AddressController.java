@@ -1,7 +1,7 @@
 package br.com.fiap.powersave.controller;
 
-
-import br.com.fiap.powersave.model.entity.Address;
+import br.com.fiap.powersave.model.dto.AddressResponseFullDto;
+import br.com.fiap.powersave.model.dto.AddressResponseSimpleDto;
 import br.com.fiap.powersave.records.AddressRecord;
 import br.com.fiap.powersave.service.AddressService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -25,27 +25,34 @@ public class AddressController {
 
     @Operation(summary = "Get Address REST API", description="Get all address from database")
     @GetMapping
-    public ResponseEntity<Page<Address>> findAll(
+    public ResponseEntity<Page<AddressResponseFullDto>> findAll(
             @RequestParam(value = "page", defaultValue = "0") Integer page,
             @RequestParam(value = "size", defaultValue = "10") Integer size) {
         Pageable pageable = PageRequest.of(page, size);
 
-        Page<Address> list = addressService.findAll(pageable);
+        Page<AddressResponseFullDto> list = addressService.findAll(pageable);
         return ResponseEntity.ok().body(list);
     }
 
     @Operation(summary = "Get Address REST API by ID", description="Get address by ID from database")
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Address> findById(@PathVariable Long id) {
-        Address obj = addressService.findById(id);
+    public ResponseEntity<AddressResponseFullDto> findById(@PathVariable Long id) {
+        AddressResponseFullDto obj = addressService.findById(id);
         return ResponseEntity.ok().body(obj);
     }
 
     @Operation(summary = "Save Address REST API", description="Save address object in a database")
     @PostMapping
-    public ResponseEntity<Address> create(@Valid @RequestBody AddressRecord addressRecord) {
-        Address address = addressService.create(addressRecord);
+    public ResponseEntity<AddressResponseSimpleDto> create(@Valid @RequestBody AddressRecord addressRecord) {
+        AddressResponseSimpleDto address = addressService.create(addressRecord);
         return ResponseEntity.status(HttpStatus.CREATED).body(address);
+    }
+
+    @Operation(summary = "Put Address REST API", description="Put address object by ID in a database")
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<AddressRecord> update(@PathVariable Long id , @RequestBody AddressRecord addressRecord) {
+        addressService.update(id, addressRecord);
+        return ResponseEntity.ok(addressRecord);
     }
 
     @Operation(summary = "Delete Address REST API", description="Delete address object by ID in a database")
@@ -55,10 +62,4 @@ public class AddressController {
         return ResponseEntity.noContent().build();
     }
 
-    @Operation(summary = "Put Address REST API", description="Put address object by ID in a database")
-    @PutMapping(value = "/{id}")
-    public ResponseEntity<AddressRecord> update(@PathVariable Long id , @RequestBody AddressRecord obj) {
-        addressService.update(id, obj);
-        return ResponseEntity.ok(obj);
-    }
 }

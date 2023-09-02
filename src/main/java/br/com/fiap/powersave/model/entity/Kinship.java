@@ -19,8 +19,12 @@ public class Kinship {
     @Enumerated(EnumType.STRING)
     private KinshipType kinshipType;
 
-    private Long kinshipPersonId;
+    @ManyToOne
+    @JoinColumn(name = "kinship_person_id")
+    private Person kinshipPerson;
 
-    private Long personId;
+    @ManyToOne
+    @JoinColumn(name = "person_id")
+    private Person person;
 
 }
