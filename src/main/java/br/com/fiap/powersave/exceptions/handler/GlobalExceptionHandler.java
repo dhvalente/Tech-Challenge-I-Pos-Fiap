@@ -1,5 +1,6 @@
-package br.com.fiap.powersave.exceptions;
+package br.com.fiap.powersave.exceptions.handler;
 
+import br.com.fiap.powersave.exceptions.*;
 import br.com.fiap.powersave.records.ExceptionRecord;
 import br.com.fiap.powersave.records.ExceptionValidationRecord;
 import org.springframework.http.HttpStatus;
@@ -36,6 +37,14 @@ public class GlobalExceptionHandler {
                 new ExceptionRecord(HttpStatus.NOT_FOUND, e.getMessage())
         );
     }
+
+    @ExceptionHandler(DatabaseException.class)
+    public ResponseEntity<ExceptionRecord> persistenceException(DatabaseException e){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                new ExceptionRecord(HttpStatus.BAD_REQUEST, e.getMessage())
+        );
+    }
+
     @ExceptionHandler(BrazilianStateNotFound.class)
     public ResponseEntity<ExceptionRecord> brazilianStateNotFound(BrazilianStateNotFound e){
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(

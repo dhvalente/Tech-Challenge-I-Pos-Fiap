@@ -1,14 +1,11 @@
 package br.com.fiap.powersave.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
-import java.util.List;
-
+import java.util.Collection;
 
 @Data
 @Entity
@@ -16,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "tb_address")
+@EqualsAndHashCode
 public class Address {
 
     @Id
@@ -23,21 +21,25 @@ public class Address {
     @Column(name = "id_address")
     private Long id;
 
-    @Column(name = "street")
+    @Column(name = "type", nullable = false)
+    private String type;
+
+    @Column(name = "street", nullable = false)
     private String street;
 
-    @Column(name = "number")
+    @Column(name = "number", nullable = false)
     private String number;
 
-    @Column(name = "city")
+    @Column(name = "city", nullable = false)
     private String city;
 
-    @Column(name = "district")
+    @Column(name = "district", nullable = false)
     private String district;
 
-    @Column(name = "state")
+    @Column(name = "state", nullable = false)
     private String state;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "addresses")
-    private List<Person> persons = new ArrayList<>();
+    private Collection<Person> persons = new ArrayList<>();
 }

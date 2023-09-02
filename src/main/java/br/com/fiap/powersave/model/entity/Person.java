@@ -7,6 +7,7 @@ import lombok.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Data
@@ -14,12 +15,12 @@ import java.util.List;
 @Entity(name = "tb_person")
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_person")
-    @EqualsAndHashCode.Include
     private Long id;
 
     @Column(name = "name")
@@ -37,7 +38,7 @@ public class Person {
 
     @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     @JoinTable(
-            name = "person_address",
+            name = "TB_PERSON_ADDRESS",
             joinColumns = @JoinColumn(name = "id_person"),
             inverseJoinColumns = @JoinColumn(name = "id_address")
     )
@@ -45,17 +46,17 @@ public class Person {
 
     @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     @JoinTable(
-            name = "person_appliance",
+            name = "TB_PERSON_APPLIANCE",
             joinColumns = @JoinColumn(name = "id_person"),
             inverseJoinColumns = @JoinColumn(name = "id_appliance")
     )
     private List<Appliance> appliances = new ArrayList<>();
 
     @OneToMany(mappedBy = "person")
-    private List<Kinship> kinshipsAsPerson = new ArrayList<>();
+    private Collection<Kinship> kinshipsAsPerson = new ArrayList<>();
 
     @OneToMany(mappedBy = "kinshipPerson")
-    private List<Kinship> kinshipsAsKinshipPerson = new ArrayList<>();
+    private Collection<Kinship> kinshipsAsKinshipPerson = new ArrayList<>();
 
     @PrePersist
     private void setRegistrationDate() {
