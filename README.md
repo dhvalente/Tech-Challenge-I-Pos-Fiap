@@ -201,7 +201,7 @@ Ao executar o projeto, o Swagger poderá ser acessado em:
 
 Caso prefira executar as API's via Postman, a collection está disponível em:
 
-> [Tech Challenge API](/documentation/PowerSave FIAP.postman_collection.json)
+> [Tech Challenge API](./documentation/PowerSave FIAP.postman_collection.json)
 
 ## Contribuição
 Sinta-se à vontade para contribuir para este projeto. Para problemas, solicitações de recursos ou correções de bugs, abra uma issue no GitHub.
