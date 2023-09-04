@@ -2,9 +2,11 @@
 
 ## Descrição do Projeto
 
-Este repositório contém o código-fonte do Tech Challenge I do programa de pós-graduação FIAP + Alura. A iniciativa foi concebida para avaliar as competências de programação adquiridas durante o primeiro módulo do programa. O projeto consiste em desenvolver três APIs com responsabilidades bem definidas, destinadas a serem consumidas por um portal web para apresentar aos usuários dados detalhados sobre o consumo de energia de seus eletrodomésticos.
+Este repositório contém o código-fonte do Tech Challenge II do programa de pós-graduação FIAP + Alura. A iniciativa foi concebida para avaliar as competências de programação adquiridas durante o primeiro módulo do programa. O projeto consiste em desenvolver três APIs com responsabilidades bem definidas, destinadas a serem consumidas por um portal web para apresentar aos usuários dados detalhados sobre o consumo de energia de seus eletrodomésticos.
 
-Essas APIs foram projetadas segundo o princípio de responsabilidade única e foram implementadas utilizando a linguagem de programação Java, juntamente com o Spring Framework. Além disso, utilizamos a biblioteca Lombok para reduzir a verbosidade do código Java e o H2 como nosso banco de dados em memória.
+Essas APIs foram projetadas segundo o princípio de responsabilidade única e foram implementadas utilizando a linguagem de programação Java, juntamente com o Spring Framework. Além disso, utilizamos a biblioteca Lombok para reduzir a verbosidade do código Java e o MySQL com Docker para a base de dados.
+
+Nessa entrega, também criamos os relacionamentos entre as unidades Appliance, Address e Person, o mesmo será descrito abaixo
 
 ## Tecnologias Utilizadas
 
@@ -14,7 +16,65 @@ Essas APIs foram projetadas segundo o princípio de responsabilidade única e fo
 
 - **Lombok**: Biblioteca Java que automatiza a criação de métodos como getters, setters, constructors, melhorando a legibilidade do código.
 
-- **H2 Database**: Um banco de dados em memória escrito em Java, rápido e adequado para aplicativos de teste e desenvolvimento.
+- **MySQL**: Plataforma que facilita a criação, o envio e a execução de aplicativos em contêineres, garantindo que o software funcione da mesma forma, independentemente de onde e como é implantado.
+
+- **Docker**: Um dos sistemas de gerenciamento de banco de dados mais populares, baseado em SQL (Structured Query Language). É usado para armazenar, organizar e recuperar dados.
+
+
+## Sobre o Relacionamento:
+
+O principal desafio desse Tech Challenge foi a criação dos relacionamentos entre as entidades utilizadas no projeto
+A representação está descrita na imagem abaixo:
+
+![img.png](img/Relacionamentos.png)
+
+### Entidades e Relações
+**Person - Address**:
+
+- Uma pessoa pode ter vários endereços, e um endereço pode pertencer a várias pessoas.
+
+- Tipo de Relação: N:N (muitos para muitos).
+
+- Implementação: Utilização da tabela intermediária tb_person_address com chaves estrangeiras para Pessoa e Endereço.
+
+
+**Person - Appliance**:
+
+- Descrição: Uma pessoa pode usar vários eletrodomésticos e um eletrodoméstico pode ser usado por várias pessoas.
+
+- Tipo de Relação: N:N (muitos para muitos).
+
+- Implementação: Utilização da tabela intermediária tb_person_appliance com chaves estrangeiras para Pessoa e Eletrodomestico.
+
+
+**Address - Appliance**:
+
+- Descrição: Um endereço pode ter vários eletrodomésticos, mas um eletrodoméstico está associado a apenas um endereço.
+
+- Tipo de Relação: 1:N (um para muitos).
+
+- Implementação: A tabela Eletrodomestico terá uma chave estrangeira para o Endereço.
+
+**Person - Kinship**:
+
+- Descrição: Uma pessoa pode ter vários parentescos, representados pela entidade Kinship. 
+O campo kinshipsAsPerson na classe Person refere-se à pessoa principal em um relacionamento de parentesco.
+Também uma pessoa pode ser um parente (ou seja, a outra pessoa) em vários relacionamentos de parentesco. 
+O campo kinshipsAsKinshipPerson na classe Person refere-se à pessoa que tem um relacionamento de parentesco específico com a pessoa principal.
+
+- Tipo de Relação: 1:N (um para muitos).
+
+- Implementação: Chave Estrangeira em Kinship: person_id e Chave Estrangeira em Kinship: kinship_person_id
+
+## Tabelas Resultantes
+![img.png](img/bd-relacoes.png)
+
+- **tb_person**: Armazena informações sobre indivíduos.
+- **tb_address**: Armazena informaçinformações sobre localizações.
+- **tb_appliance**: Armazena informações sobre aparelhos, como geladeiras, fogões e afins.
+- **tb_kinship**: Armazena informações sobre os relacionamentos de parentesco entre as pessoas. Esta tabela contém duas chaves estrangeiras referenciando a tabela Pessoa — uma representando a pessoa principal (person_id) e outra representando o parente (kinship_person_id)
+- **tb_person_address**: Tabela de junção que representa a relação N:N entre Pessoa e Endereço.
+- **tb_person_appliance**: Tabela de junção que representa a relação N:N entre Pessoa e Eletrodomestico.
 
 ## APIs Desenvolvidas
 
@@ -44,26 +104,33 @@ Essas APIs foram projetadas segundo o princípio de responsabilidade única e fo
 
 - **PersonController**: Gerencia todas as operações CRUD relacionadas a pessoas.
 
-> Post: Save people object to database
+> Post: Save person object to database
 >> http://localhost:8080/v1/people
 ![img.png](img/people-post.png)
 
-> Get : Get all people from database
+> Get : Get all person from database
 >> http://localhost:8080/v1/people
 ![img.png](img/people-getall.png)
 
-> Get By Id : Get people by ID from database
+> Get By Id : Get person by ID from database
 >> http://localhost:8080/v1/people/{id}
 ![img.png](img/people-getId.png)
 
-
-> Put : Put people object by ID to database
+> Put : Put person object by ID to database
 >> http://localhost:8080/v1/people/{id}
 ![img.png](img/people-put.png)
 
-> Delete : Delete people object by ID to database
+> Delete : Delete person object by ID to database
 >> http://localhost:8080/v1/people/{id}
 ![img.png](img/people-delete.png)
+
+-**Novos endpoints criados**:
+
+> Post: Associate a address to a person
+>> http://localhost:8080/v1/people/{PersonId}/associate-address/{AddressID}
+
+> Post: Associate a appliance to a person
+>> http://localhost:8080/v1/people/{PersonId}/associate-appliance/{ApplianceId}
 
 - **ApplianceController**: Gerencia todas as operações CRUD relacionadas a aparelhos domésticos.
 
@@ -87,6 +154,7 @@ Essas APIs foram projetadas segundo o princípio de responsabilidade única e fo
 >> http://localhost:8080/v1/appliance/{id}
 ![img.png](img/appliance-delete.png)
 
+Após a criação dos endpoints que fazem a associação dos endereços e eletrodométicos, agora é possível visualizar as associações nos metódos GET
 
 ## Arquitetura do Projeto
 
@@ -104,19 +172,36 @@ Utilizamos DTOs (Data Transfer Objects) para melhorar a segurança dos dados, ad
 
 ## Execução do Projeto
 
-1. Clone este repositório para o seu ambiente de desenvolvimento.
-2. Abra o projeto na sua IDE que suporte desenvolvimento Java (por exemplo, IntelliJ IDEA, Eclipse).
-3. Execute o projeto - o servidor será iniciado automaticamente.
-> Nota: Certifique-se de ter o ambiente Java e todas as outras dependências instaladas.
+### Preparativos
 
+1. **Certifique-se de que o Docker esteja instalado** em sua máquina.
+2. **Clone este repositório** para o seu ambiente de desenvolvimento.
+
+### Configuração do Ambiente
+
+1. Abra o projeto na sua IDE de preferência que suporte desenvolvimento Java, como IntelliJ IDEA ou Eclipse.
+
+### Inicialização do MySQL via Docker
+
+1. Inicie o Docker Daemon em sua máquina.
+2. No terminal ou prompt de comando, navegue até a pasta raiz do projeto e execute o seguinte comando:
+
+```bash
+docker-compose up -d
+```
+
+Nota: A opção -d fará com que os containers rodem em background.
+
+3. Execute o projeto - o servidor será iniciado automaticamente.
+Certifique-se de ter o ambiente Java e todas as outras dependências instaladas.
 
 ## Outros links
 Ao executar o projeto, o Swagger poderá ser acessado em:
 >http://localhost:8080/swagger-ui/index.html
 
-Caso prefira executar as API's via Insomnia, a collection está disponível em:
+Caso prefira executar as API's via Postman, a collection está disponível em:
 
-> [Tech Challenge API](./documentation/PowerSave-Insomnia.json)
+> [Tech Challenge API](./documentation/PowerSave FIAP.postman_collection.json)
 
 ## Contribuição
 Sinta-se à vontade para contribuir para este projeto. Para problemas, solicitações de recursos ou correções de bugs, abra uma issue no GitHub.
